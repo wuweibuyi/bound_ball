@@ -1,4 +1,3 @@
-
 # -*- coding-utf-8 -*-
 
 import  pygame
@@ -40,8 +39,8 @@ image_width=87
 
 
 #screen params
-screen_width=870
-screen_height=600
+screen_width=600
+screen_height=800
 screen=pygame.display.set_mode([screen_width,screen_height])
 screen.fill([255,255,255])
 
@@ -56,10 +55,13 @@ board_pos=700
 #bar params
 bar_left=200
 bar_top=screen_height-100
-bar_width=2
+bar_width=4
 bar_speed=0
 bar_speed_step=10
 bar_length=200
+
+#def game level
+game_level=10
 
 while True:
     pygame.draw.rect(screen,[255,255,255],[bar_left,bar_top,bar_length,bar_width],0)
@@ -78,7 +80,7 @@ while True:
                 bar_speed = 0
             if event.key == pygame.K_RIGHT:
                 bar_speed = 0
-    pygame.time.delay(20)
+    pygame.time.delay(10)
     pygame.draw.rect(screen,[255,255,255],[x,y,image_length,image_width],0)
 
     x=x+x_speed
