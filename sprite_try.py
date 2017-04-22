@@ -34,7 +34,6 @@ def animate(group):
             ball.speed[1]=-ball.speed[1]
         group.add(ball)
         screen.blit(ball.image,ball.rect)
-    pygame.time.delay(game_level)
     pygame.display.flip()
 
 
@@ -47,6 +46,7 @@ image_file="image/ball.jpg"
 speed=[2,3]
 game_level=10
 group = pygame.sprite.Group()
+clock=pygame.time.Clock()
 for row in range(0,2):
     for colum in range(0,2):
         location=[colum*130+10,row*164+10]
@@ -58,8 +58,11 @@ for row in range(0,2):
 while True:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
+            frame_rate=clock.get_fps()
+            print "frame rate is " , frame_rate
             sys.exit()
     animate(group)
+    clock.tick(100)
 
 
 
