@@ -32,16 +32,24 @@ class Ball(pygame.sprite.Sprite):
         newpos=self.rect.move(self.speed)
         self.rect=newpos
 
-my_ball=Ball("image/ball.jpg",[10,0],[10,0])
+my_ball=Ball("image/ball.jpg",[10,0],[0,0])
+held_down=False
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        elif event.type ==pygame.KEYDOWN:
-            if event.key==pygame.K_UP:
-                my_ball.rect.top = my_ball.rect.top - 10
-            if event.key == pygame.K_DOWN:
-                my_ball.rect.top = my_ball.rect.top + 10
+        elif event.type==pygame.MOUSEBUTTONDOWN:
+            #print "ball center is ",my_ball.rect.center
+            if  my_ball.rect.center[0]-30< event.pos[0]<my_ball.rect.center[0]+30 and \
+                                            my_ball.rect.center[1]-30<event.pos[1]<my_ball.rect.center[1]+30:
+                held_down=True
+            #print "mouse is here: ", event.pos
+            #print "held_down is ", held_down
+        elif event.type==pygame.MOUSEBUTTONUP:
+            held_down=False
+        elif event.type==pygame.MOUSEMOTION:
+            if held_down:
+                my_ball.rect.center=event.pos
     clock.tick(30)
     screen.blit(background,[0,0])
     my_ball.move()
