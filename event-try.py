@@ -5,6 +5,9 @@ import sys
 import  random
 
 pygame.init()
+delay=100
+interval=50
+pygame.key.set_repeat(delay,interval)
 screen=pygame.display.set_mode([640,480])
 background=pygame.Surface(screen.get_size())
 background.fill([255,255,255])
